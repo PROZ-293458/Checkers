@@ -12,7 +12,7 @@ public class Piece
 	Color color;
 	Type type;
 	
-	Piece(int x, int y, Color color)
+	public Piece(int x, int y, Color color)
 	{
 		this.x = x;
 		this.y = y;
@@ -20,37 +20,43 @@ public class Piece
 		type = MAN;
 	}
 	
-	void Move ( int x, int y)
+	public Piece(Piece piece)
+	{
+		this(piece.getX(), piece.getY(), piece.getColor());
+	}
+	
+	public void Move(int x, int y)
 	{
 		this.x = x;
 		this.y = y;
+		if (type == MAN && y == 7)
+			setKing();
 	}
 	
-	Type setKing()
+	public Type setKing()
 	{
 		type = KING;
 		return type;
 	}
 	
 	
-	int getX()
+	public int getX()
 	{
 		return x;
 	}
 	
-	int getY()
+	public int getY()
 	{
 		return y;
 	}
 	
-	Color getColor()
+	public Color getColor()
 	{
 		return color;
 	}
 	
-	Type getType()
+	public Type getType()
 	{
 		return type;
 	}
-	
 }

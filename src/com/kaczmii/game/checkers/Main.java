@@ -27,6 +27,8 @@ public class Main extends Application
 		{
 			ViewLoader<GridPane, BoardController> viewLoader = new ViewLoader<GridPane, BoardController>("view/Board.fxml");
 			GridPane gridpane = viewLoader.getLayout();
+			BoardController boardController = viewLoader.getController();
+			boardController.init();
 			Scene scene = new Scene(gridpane);
 			arg0.setScene(scene);
 			arg0.setTitle("Calculator");
