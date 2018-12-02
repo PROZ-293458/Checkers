@@ -5,8 +5,11 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import com.kaczmii.game.checkers.model.Piece;
+
 import com.kaczmii.game.checkers.model.Field;
+import com.kaczmii.game.checkers.model.Initialize;
+import com.kaczmii.game.checkers.model.Piece;
+import com.kaczmii.game.checkers.model.Search;
 
 public class BoardController {
 
@@ -92,11 +95,6 @@ public class BoardController {
     
     private ImageView[][] imageViews;
     
-    private void initializePieces()
-    {
-    	
-    }
-    
     private void initializeImageViews()
     {
     	imageViews = new ImageView[8][8];
@@ -134,19 +132,22 @@ public class BoardController {
     	imageViews[6][7] = red67;
     }
     
-    private void initializeFields()
-    {
-    	
-    }
     public void init()
     {
-    	
-    	
+    	initializeImageViews(); 
+    	pieces = Initialize.initPieces();
+    	fields = Initialize.initFields();
     }
     
     @FXML
     void FieldClicked(MouseEvent event) 
     {
+    	int[] coordinates;
+    	coordinates = Search.findField(fields, event);
+    	System.out.println("Coordinates are ");
+    	System.out.println( coordinates[0]);
+    	System.out.println("and");
+    	System.out.println(coordinates[1]);
     	
     }
 

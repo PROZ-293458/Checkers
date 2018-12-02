@@ -1,7 +1,5 @@
 package com.kaczmii.game.checkers.model;
 
-import com.kaczmii.game.checkers.model.Piece;
-
 import javafx.scene.image.ImageView;
 
 public class Field
@@ -10,14 +8,16 @@ public class Field
 	int y;
 	boolean isPiece;
 	boolean isActive;
-	enum Type {NORMAL, END};
+	public enum Type {NORMAL, END};
 	Type type;
 	Piece piece;
 	
 	
 	public Field()
 	{
+		
 	}
+	
 	public Field(int x,int y, boolean isPiece, Type type, Piece piece)
 	{
 		this.x = x;
@@ -42,7 +42,7 @@ public class Field
 	
 	public Field( Field field)
 	{
-		this(field.getX(), field.getY(), field.getIsPiece(), field.getType(), field.getPiece());
+		this(field.getXcoordinate(), field.getYcoordinate(), field.isPiece(), field.getType(), field.getPiece());
 	}
 	
 	public Piece setPiece (Piece piece)
@@ -51,22 +51,22 @@ public class Field
 		return piece;
 	}
 	
-	public int getX()
+	public int getXcoordinate()
 	{
 		return x;
 	}
 	
-	public int getY()
+	public int getYcoordinate()
 	{
 		return y;
 	}
 	
-	public boolean getIsPiece()
+	public boolean isPiece()
 	{
 		return isPiece;
 	}
 	
-	public boolean getIsActive()
+	public boolean isActive()
 	{
 		return isActive;
 	}

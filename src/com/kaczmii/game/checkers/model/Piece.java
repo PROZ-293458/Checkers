@@ -1,14 +1,13 @@
 package com.kaczmii.game.checkers.model;
 
-import static com.kaczmii.game.checkers.model.Piece.Color.*;
 import static com.kaczmii.game.checkers.model.Piece.Type.*;
 
 public class Piece 
 {
 	int x;
 	int y;
-	enum Type {MAN, KING};
-	enum Color {WHITE, BLACK};
+	public enum Type {MAN, KING};
+	public enum Color {WHITE, BLACK};
 	Color color;
 	Type type;
 	
