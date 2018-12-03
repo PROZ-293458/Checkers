@@ -43,7 +43,7 @@ public class Initialize
     				{
     					if ( i % 2 == 0)
     					{
-    						pieces[i][j] = new Piece(i, j, Piece.Color.BLACK);
+    						pieces[i][j] = new Piece(i, j, Piece.Color.RED);
     					}
     					else
     					{
@@ -58,7 +58,7 @@ public class Initialize
     					}
     					else
     					{
-    						pieces[i][j] = new Piece(i, j, Piece.Color.BLACK);
+    						pieces[i][j] = new Piece(i, j, Piece.Color.RED);
     					}
     				}
     			}
@@ -73,6 +73,7 @@ public class Initialize
 	
 	static public Field[][] initFields()
 	{
+		fields = new Field[8][8];
 		for ( int i = 0 ; i < 8 ; i++ )
 		{
 			for ( int j = 0 ; j < 8 ; j++ )
@@ -119,7 +120,7 @@ public class Initialize
 						if ( j <= 2 )
 						{
 							// row 1
-							fields[i][j] = new Field(i, j, true, Field.Type.NORMAL, pieces[i][j]);
+							fields[i][j] = new Field(i, j, true, Field.Type.NORMAL, pieces[i][j] );
 						}
 						else if ( j >= 5 )
 						{

@@ -1,5 +1,6 @@
 package com.kaczmii.game.checkers.model;
 
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Field
@@ -11,7 +12,8 @@ public class Field
 	public enum Type {NORMAL, END};
 	Type type;
 	Piece piece;
-	
+	static Image black;
+	static Image orange;
 	
 	public Field()
 	{
@@ -30,14 +32,9 @@ public class Field
 		}
 		else
 			this.piece = null;
-		if ( isPiece )
-		{
-			isActive = false;
-		}
-		else
-		{
-			isActive = true;
-		}
+		isActive = false;
+		black = new Image("/Solid_black.png", true);
+		orange = new Image("/Orange.png", true);
 	}
 	
 	public Field( Field field)
@@ -80,4 +77,41 @@ public class Field
 	{
 		return piece;
 	}
+	public boolean setActive(boolean bool)
+	{
+		isActive = bool;
+		return bool;
+	}
+	
+	public static void imageChangeOrange( int[][] fieldscoordinates, ImageView[][] imageViewsFields, Field[][] fields)
+	{
+		for ( int i = 0 ; i < 2; i++ )
+		{
+			int x = fieldscoordinates[i][0];
+			int y = fieldscoordinates[i][1];
+			if ( x < 0 || y < 0)
+				continue;
+			fields[x][y].setActive(true);
+			imageViewsFields[x][y].setImage(orange);
+		}
+	}
+	
+	public static void imageChangeBlack ( ImageView[][] imageViewsFields, Field[][] fields )
+	{
+		for ( int i = 0 ; i < 8 ; i++ )
+		{
+			for ( int j = 0 ; j < 8 ; j++ )
+			{
+				if ( fields[i][j] != null )
+				{
+					if ( fields[i][j].isActive() )
+					{
+						imageViewsFields[i][j].setImage(black);
+						fields[i][j].setActive(false);
+					}
+				}
+			}
+		}
+	}
+	
 }

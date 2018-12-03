@@ -53,5 +53,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Kaczmii/eclipse-workspace/Checkers/images"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

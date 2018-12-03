@@ -7,7 +7,7 @@ public class Piece
 	int x;
 	int y;
 	public enum Type {MAN, KING};
-	public enum Color {WHITE, BLACK};
+	public enum Color {WHITE, RED};
 	Color color;
 	Type type;
 	

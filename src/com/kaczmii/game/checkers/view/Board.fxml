@@ -28,162 +28,162 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <ImageView fitHeight="75.0" fitWidth="75.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+      <ImageView fx:id="field10" fitHeight="75.0" fitWidth="75.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+      <ImageView fx:id="field30" fitHeight="75.0" fitWidth="75.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5">
+      <ImageView fx:id="field50" fitHeight="75.0" fitWidth="75.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="10.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+      <ImageView fx:id="field01" fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="10.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="10.0" layoutY="85.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="2">
+      <ImageView fx:id="field72" fitHeight="75.0" fitWidth="75.0" layoutX="10.0" layoutY="85.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="2">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="10.0" layoutY="85.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="2">
+      <ImageView fx:id="field52" fitHeight="75.0" fitWidth="75.0" layoutX="10.0" layoutY="85.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="2">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="10.0" layoutY="85.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
+      <ImageView fx:id="field32" fitHeight="75.0" fitWidth="75.0" layoutX="10.0" layoutY="85.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="10.0" layoutY="85.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <ImageView fx:id="field12" fitHeight="75.0" fitWidth="75.0" layoutX="10.0" layoutY="85.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="10.0" layoutY="85.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7">
+      <ImageView fx:id="field70" fitHeight="75.0" fitWidth="75.0" layoutX="10.0" layoutY="85.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="10.0" layoutY="85.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="1">
+      <ImageView fx:id="field61" fitHeight="75.0" fitWidth="75.0" layoutX="10.0" layoutY="85.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="1">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="10.0" layoutY="85.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="1">
+      <ImageView fx:id="field41" fitHeight="75.0" fitWidth="75.0" layoutX="10.0" layoutY="85.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="1">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="10.0" layoutY="85.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+      <ImageView fx:id="field21" fitHeight="75.0" fitWidth="75.0" layoutX="10.0" layoutY="85.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="160.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="5">
+      <ImageView fx:id="field05" fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="160.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="5">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="160.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="4">
+      <ImageView fx:id="field74" fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="160.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="4">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="160.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="4">
+      <ImageView fx:id="field54" fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="160.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="4">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="160.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="4">
+      <ImageView fx:id="field34" fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="160.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="4">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="160.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
+      <ImageView fx:id="field14" fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="160.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="160.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="3">
+      <ImageView fx:id="field63" fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="160.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="3">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="160.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="3">
+      <ImageView fx:id="field43" fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="160.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="3">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="160.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="3">
+      <ImageView fx:id="field23" fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="160.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="3">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="160.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
+      <ImageView fx:id="field03" fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="160.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="310.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="6">
+      <ImageView fx:id="field76" fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="310.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="6">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="310.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="6">
+      <ImageView fx:id="field56" fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="310.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="6">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="310.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="6">
+      <ImageView fx:id="field36" fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="310.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="6">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="310.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="6">
+      <ImageView fx:id="field16" fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="310.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="6">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="310.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="5">
+      <ImageView fx:id="field65" fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="310.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="5">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="310.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="5">
+      <ImageView fx:id="field45" fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="310.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="5">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="310.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="5">
+      <ImageView fx:id="field25" fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="310.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="5">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="160.0" layoutY="385.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="7">
+      <ImageView fx:id="field67" fitHeight="75.0" fitWidth="75.0" layoutX="160.0" layoutY="385.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="7">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="160.0" layoutY="385.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="7">
+      <ImageView fx:id="field47" fitHeight="75.0" fitWidth="75.0" layoutX="160.0" layoutY="385.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="7">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="160.0" layoutY="385.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="7">
+      <ImageView fx:id="field27" fitHeight="75.0" fitWidth="75.0" layoutX="160.0" layoutY="385.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="7">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="160.0" layoutY="385.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="7">
+      <ImageView fx:id="field07" fitHeight="75.0" fitWidth="75.0" layoutX="160.0" layoutY="385.0" onMouseClicked="#FieldClicked" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="7">
          <image>
             <Image url="@../../../../../../images/Solid_black.png" />
          </image>
