@@ -44,6 +44,14 @@ public class Field
 	
 	public Piece setPiece (Piece piece)
 	{
+		if ( piece == null)
+		{
+			isPiece = false;
+		}
+		else
+		{
+			isPiece = true;
+		}
 		this.piece = piece;
 		return piece;
 	}
@@ -104,11 +112,8 @@ public class Field
 			{
 				if ( fields[i][j] != null )
 				{
-					if ( fields[i][j].isActive() )
-					{
-						imageViewsFields[i][j].setImage(black);
-						fields[i][j].setActive(false);
-					}
+					imageViewsFields[i][j].setImage(black);
+					fields[i][j].setActive(false);
 				}
 			}
 		}

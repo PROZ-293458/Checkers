@@ -192,8 +192,6 @@ public class BoardController {
     
     private ImageView[][] imageViewsFields;
     
-    
-    
     private void initializeImageViews()
     {
     	
@@ -284,7 +282,14 @@ public class BoardController {
     void FieldClicked(MouseEvent event) 
     {
     	int[] coordinates;
+    	int[] pieceCoordinates;
     	coordinates = Search.findField(imageViewsFields, fields, event);
+    	pieceCoordinates = Search.findActivePiece(pieces);
+    	
+    	if ( pieceCoordinates[0] != -1 )
+    	{
+    		pieces[pieceCoordinates[0]][pieceCoordinates[1]].movePiece(pieceCoordinates, coordinates, imageViewsFields, imageViewsPieces, fields, pieces, gridPane);
+    	}
     	System.out.println("Coordinates are ");
     	System.out.println( coordinates[0]);
     	System.out.println("and");
@@ -297,9 +302,21 @@ public class BoardController {
     {
     	int[] coordinates;
     	int[][] fieldscoordinates;
-    	coordinates = Search.findPiece(imageViewsPieces, pieces, event);
-    	fieldscoordinates = Search.indicateFields(coordinates, fields);
-    	Field.imageChangeOrange(fieldscoordinates, imageViewsFields, fields);
+    	coordinates = Search.findPiece(imageViewsPieces, pieces, event); // znalezienie kliknietego pionka
+    	if ( !pieces[coordinates[0]][coordinates[1]].isActive() )
+    	{
+    		// jesli jest aktywny to ustaw na pomaranczowe mozliwe do wyboru
+    		Search.setEverythingFalse(pieces, fields, imageViewsFields);
+    		fieldscoordinates = Search.indicateFields(coordinates, fields);
+        	Field.imageChangeOrange(fieldscoordinates, imageViewsFields, fields);
+        	pieces[coordinates[0]][coordinates[1]].setActive(true);
+    	}
+    	else
+    	{
+    		Field.imageChangeBlack(imageViewsFields, fields);
+    		pieces[coordinates[0]][coordinates[1]].setActive(false);
+    	}
+    	
     	System.out.println("Coordinates are ");
     	System.out.println( coordinates[0]);
     	System.out.println("and");
