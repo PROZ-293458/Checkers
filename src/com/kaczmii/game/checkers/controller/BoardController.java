@@ -285,10 +285,16 @@ public class BoardController {
     	int[] pieceCoordinates;
     	coordinates = Search.findField(imageViewsFields, fields, event);
     	pieceCoordinates = Search.findActivePiece(pieces);
-    	
     	if ( pieceCoordinates[0] != -1 )
     	{
-    		pieces[pieceCoordinates[0]][pieceCoordinates[1]].movePiece(pieceCoordinates, coordinates, imageViewsFields, imageViewsPieces, fields, pieces, gridPane);
+    		if ( pieces[pieceCoordinates[0]][pieceCoordinates[1]].getType() == Piece.Type.MAN)
+    		{
+    			pieces[pieceCoordinates[0]][pieceCoordinates[1]].movePiece(pieceCoordinates, coordinates, imageViewsFields, imageViewsPieces, fields, pieces, gridPane);
+    		}
+    		else
+    		{
+    			pieces[pieceCoordinates[0]][pieceCoordinates[1]].moveKing(pieceCoordinates, coordinates, imageViewsFields, imageViewsPieces, fields, pieces, gridPane);
+    		}
     	}
     	System.out.println("Coordinates are ");
     	System.out.println( coordinates[0]);

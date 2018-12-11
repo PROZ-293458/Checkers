@@ -93,7 +93,7 @@ public class Field
 	
 	public static void imageChangeOrange( int[][] fieldscoordinates, ImageView[][] imageViewsFields, Field[][] fields)
 	{
-		for ( int i = 0 ; i < 2; i++ )
+		for ( int i = 0 ; i < 28; i++ )
 		{
 			int x = fieldscoordinates[i][0];
 			int y = fieldscoordinates[i][1];

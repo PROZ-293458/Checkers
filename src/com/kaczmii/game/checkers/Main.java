@@ -1,6 +1,7 @@
 package com.kaczmii.game.checkers;
 
 import com.kaczmii.game.checkers.controller.BoardController;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;

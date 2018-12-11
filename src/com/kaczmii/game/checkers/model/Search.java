@@ -45,7 +45,7 @@ public class Search
 	
 	static public int[][] indicateFields( int[] coordinates, Field[][] fields)
 	{
-		int[][] fieldscoordinates = new int[16][2];
+		int[][] fieldscoordinates = new int[28][2];
 		int x = coordinates[0];
 		int y = coordinates[1];
 		if ( fields[x][y].getPiece().getType() == Piece.Type.MAN )
@@ -94,7 +94,6 @@ public class Search
 					fieldscoordinates[0][0] = -1;
 					fieldscoordinates[0][1] = -1;
 				}
-				
 				if ( x-1 >= 0 && y+1 >= 0 && x-1 <= 7 && y+1 <=7)
 				{
 					if ( fields[x-1][y+1].isPiece() )
@@ -228,7 +227,7 @@ public class Search
 					fieldscoordinates[1][1] = -1;
 				}
 			}
-			for ( int i = 2 ; i < 16 ; i++ )
+			for ( int i = 2 ; i < 28 ; i++ )
 			{
 				for ( int j = 0 ; j < 2 ; j++ )
 				{
@@ -239,22 +238,46 @@ public class Search
 		else
 		{
 			int counter = 0;
-			for ( int i = x-4, j = y-4 ; i < x+4 ; i++, j++ )
+			boolean flag = false;
+			for ( int i = x-1, j = y-1 ; i > x-8 ; i--, j-- )
 			{
-				if ( i == x && j == y)
-					continue;
 				if ( i >= 0 && i <= 7 && j >= 0 && j <= 7)
 				{
-					if ( fields[i][j].isPiece() )
-					{
-						fieldscoordinates[counter][0] = i;
-						fieldscoordinates[counter][1] = j;
-						counter++;
-					}
-					else
+					if ( flag )
 					{
 						fieldscoordinates[counter][0] = -1;
 						fieldscoordinates[counter][1] = -1;
+						counter++;
+						continue;
+					}
+					if ( fields[i][j].isPiece() )
+					{
+						if ( i-1 >= 0 && j-1 >= 0 && i-1 < 8 && j-1 < 8)
+						{
+							if ( fields[i-1][j-1].isPiece() )
+							{
+								flag = true;
+								fieldscoordinates[counter][0] = -1;
+								fieldscoordinates[counter][1] = -1;
+							}
+							else
+							{
+								fieldscoordinates[counter][0] = i;
+								fieldscoordinates[counter][1] = j;
+							}
+							counter++;
+						}
+						else
+						{
+							fieldscoordinates[counter][0] = -1;
+							fieldscoordinates[counter][1] = -1;
+							counter++;
+						}
+					}
+					else
+					{
+						fieldscoordinates[counter][0] = i;
+						fieldscoordinates[counter][1] = j;
 						counter++;
 					}
 				}
@@ -265,22 +288,149 @@ public class Search
 					counter++;
 				}
 			}
-			for ( int i = x+4, j = y-4 ; i < x-4 ; i--, j++ )
+			flag = false;
+			for ( int i = x+1, j = y+1 ; i < x+8 ; i++, j++ )
 			{
-				if ( i == x && j == y)
-					continue;
-				if ( i >= 0 && i <= 7 && j >= 0 && j <= 7 )
+				if ( i >= 0 && i <= 7 && j >= 0 && j <= 7)
 				{
+					if ( flag )
+					{
+						fieldscoordinates[counter][0] = -1;
+						fieldscoordinates[counter][1] = -1;
+						counter++;
+						continue;
+					}
 					if ( fields[i][j].isPiece() )
+					{
+						if ( i+1 >= 0 && j+1 >= 0 && i+1 < 8 && j+1 < 8)
+						{
+							if ( fields[i+1][j+1].isPiece() )
+							{
+								flag = true;
+								fieldscoordinates[counter][0] = -1;
+								fieldscoordinates[counter][1] = -1;
+								
+							}
+							else
+							{
+								fieldscoordinates[counter][0] = i;
+								fieldscoordinates[counter][1] = j;
+							}
+							counter++;
+						}
+						else
+						{
+							fieldscoordinates[counter][0] = -1;
+							fieldscoordinates[counter][1] = -1;
+							counter++;
+						}
+					}
+					else
 					{
 						fieldscoordinates[counter][0] = i;
 						fieldscoordinates[counter][1] = j;
 						counter++;
 					}
-					else
+				}
+				else
+				{
+					fieldscoordinates[counter][0] = -1;
+					fieldscoordinates[counter][1] = -1;
+					counter++;
+				}
+			}
+			flag = false;
+			for ( int i = x-1, j = y+1 ; i > x-8 ; i--, j++ )
+			{
+				if ( i >= 0 && i <= 7 && j >= 0 && j <= 7)
+				{
+					if ( flag )
 					{
 						fieldscoordinates[counter][0] = -1;
 						fieldscoordinates[counter][1] = -1;
+						counter++;
+						continue;
+					}
+					if ( fields[i][j].isPiece() )
+					{
+						if ( i-1 >= 0 && j+1 >= 0 && i-1 < 8 && j+1 < 8)
+						{
+							if ( fields[i-1][j+1].isPiece() )
+							{
+								flag = true;
+								fieldscoordinates[counter][0] = -1;
+								fieldscoordinates[counter][1] = -1;
+								
+							}
+							else
+							{
+								fieldscoordinates[counter][0] = i;
+								fieldscoordinates[counter][1] = j;
+							}
+							counter++;
+						}
+						else
+						{
+							fieldscoordinates[counter][0] = -1;
+							fieldscoordinates[counter][1] = -1;
+							counter++;
+						}
+					}
+					else
+					{
+						fieldscoordinates[counter][0] = i;
+						fieldscoordinates[counter][1] = j;
+						counter++;
+					}
+				}
+				else
+				{
+					fieldscoordinates[counter][0] = -1;
+					fieldscoordinates[counter][1] = -1;
+					counter++;
+				}
+			}
+			flag = false;
+			for ( int i = x+1, j = y-1 ; i < x+8 ; i++, j-- )
+			{
+				if ( i >= 0 && i <= 7 && j >= 0 && j <= 7)
+				{
+					if ( flag )
+					{
+						fieldscoordinates[counter][0] = -1;
+						fieldscoordinates[counter][1] = -1;
+						counter++;
+						continue;
+					}
+					if ( fields[i][j].isPiece() )
+					{
+						if ( i+1 >= 0 && j-1 >= 0 && i+1 < 8 && j-1 < 8)
+						{
+							if ( fields[i+1][j-1].isPiece() )
+							{
+								flag = true;
+								fieldscoordinates[counter][0] = -1;
+								fieldscoordinates[counter][1] = -1;
+								
+							}
+							else
+							{
+								fieldscoordinates[counter][0] = i;
+								fieldscoordinates[counter][1] = j;
+							}
+							counter++;
+						}
+						else
+						{
+							fieldscoordinates[counter][0] = -1;
+							fieldscoordinates[counter][1] = -1;
+							counter++;
+						}
+					}
+					else
+					{
+						fieldscoordinates[counter][0] = i;
+						fieldscoordinates[counter][1] = j;
 						counter++;
 					}
 				}
