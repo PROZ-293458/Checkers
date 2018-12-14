@@ -442,7 +442,6 @@ public class Search
 				}
 			}
 		}
-
 		return fieldscoordinates;
 	}
 	

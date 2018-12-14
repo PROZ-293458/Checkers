@@ -5,13 +5,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
+import com.kaczmii.game.checkers.model.Consumer;
 import com.kaczmii.game.checkers.model.Field;
 import com.kaczmii.game.checkers.model.Initialize;
 import com.kaczmii.game.checkers.model.Piece;
+import com.kaczmii.game.checkers.model.Piece.Color;
+import com.kaczmii.game.checkers.model.Producer;
 import com.kaczmii.game.checkers.model.Search;
+import com.sun.messaging.jms.JMSException;
 
-public class BoardController {
-
+public class BoardController 
+{
     @FXML
     private GridPane gridPane;
 
@@ -192,6 +196,14 @@ public class BoardController {
     
     private ImageView[][] imageViewsFields;
     
+    private Producer producer;
+    
+    private Consumer consumer;
+    
+    public Color player;
+    
+    private boolean flag; // flaga czy moze wykonac ruch
+    
     private void initializeImageViews()
     {
     	
@@ -271,21 +283,37 @@ public class BoardController {
     	imageViewsFields[6][7] = field67;
     }
     
-    public void init()
+    public void init() throws javax.jms.JMSException,InterruptedException
     {
     	initializeImageViews(); 
     	pieces = Initialize.initPieces();
     	fields = Initialize.initFields();
+    	try
+    	{
+    		producer = new Producer("localhost:4848/jms", "producer");
+        	consumer = new Consumer("localhost:4848/jms", "consumer", player, this);
+        	consumer.receiveQueueMessageAsync();
+    	}
+    	catch ( JMSException e)
+    	{
+    		
+    	}
+    	
     }
     
+   public void setPlayer( Color player )
+   {
+	   this.player = player;
+   }
+    
     @FXML
-    void FieldClicked(MouseEvent event) 
+    void FieldClicked(MouseEvent event) throws InterruptedException
     {
     	int[] coordinates;
     	int[] pieceCoordinates;
     	coordinates = Search.findField(imageViewsFields, fields, event);
     	pieceCoordinates = Search.findActivePiece(pieces);
-    	if ( pieceCoordinates[0] != -1 )
+    	if ( pieceCoordinates[0] != -1 && fields[coordinates[0]][coordinates[1]].isActive() )
     	{
     		if ( pieces[pieceCoordinates[0]][pieceCoordinates[1]].getType() == Piece.Type.MAN)
     		{
@@ -295,20 +323,28 @@ public class BoardController {
     		{
     			pieces[pieceCoordinates[0]][pieceCoordinates[1]].moveKing(pieceCoordinates, coordinates, imageViewsFields, imageViewsPieces, fields, pieces, gridPane);
     		}
+    		producer.sendQueueMessage( producer.buildString(player, coordinates, pieceCoordinates) );
+    		flag = true;
     	}
-    	System.out.println("Coordinates are ");
-    	System.out.println( coordinates[0]);
-    	System.out.println("and");
-    	System.out.println(coordinates[1]);
+    	
     	
     }
 
     @FXML
     void PieceClicked(MouseEvent event) 
     {
-    	int[] coordinates;
-    	int[][] fieldscoordinates;
+    	int[] coordinates; // clicked field's coordinates
+    	int[][] fieldscoordinates; // coordinates of fields, which can be used to move a piece
     	coordinates = Search.findPiece(imageViewsPieces, pieces, event); // znalezienie kliknietego pionka
+    	// check if piece is the same color as player
+    	if ( pieces[coordinates[0]][coordinates[1]].getColor() != player )
+    	{
+    		return;
+    	}
+    	if ( flag )
+    	{
+    		return;
+    	}
     	if ( !pieces[coordinates[0]][coordinates[1]].isActive() )
     	{
     		// jesli jest aktywny to ustaw na pomaranczowe mozliwe do wyboru
@@ -322,11 +358,24 @@ public class BoardController {
     		Field.imageChangeBlack(imageViewsFields, fields);
     		pieces[coordinates[0]][coordinates[1]].setActive(false);
     	}
-    	
-    	System.out.println("Coordinates are ");
-    	System.out.println( coordinates[0]);
-    	System.out.println("and");
-    	System.out.println(coordinates[1]);
+    }
+    
+    public void MessageMove( int[] fieldsCoordinates, int[] pieceCoordinatesMessage)
+    {
+    	int[] coordinates = fieldsCoordinates;
+    	int[] pieceCoordinates = pieceCoordinatesMessage;
+    	if ( pieceCoordinates[0] != -1 && fields[coordinates[0]][coordinates[1]].isActive() )
+    	{
+    		if ( pieces[pieceCoordinates[0]][pieceCoordinates[1]].getType() == Piece.Type.MAN)
+    		{
+    			pieces[pieceCoordinates[0]][pieceCoordinates[1]].movePiece(pieceCoordinates, coordinates, imageViewsFields, imageViewsPieces, fields, pieces, gridPane);
+    		}
+    		else
+    		{
+    			pieces[pieceCoordinates[0]][pieceCoordinates[1]].moveKing(pieceCoordinates, coordinates, imageViewsFields, imageViewsPieces, fields, pieces, gridPane);
+    		}
+    		flag = false;
+    	}
     }
 
 }

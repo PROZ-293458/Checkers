@@ -6,13 +6,15 @@ import javax.jms.JMSException;
 import javax.jms.JMSProducer;
 import javax.jms.Queue;
 
+import com.kaczmii.game.checkers.model.Piece.Color;
+
 public class Producer 
 {
 	private JMSContext jmsContext;
 	private JMSProducer jmsProducer;
 	private Queue queue;
 
-	Producer(String url, String queueName) throws JMSException 
+	public Producer(String url, String queueName) throws JMSException 
 	{
 		ConnectionFactory connectionFactory = new com.sun.messaging.ConnectionFactory();
 		// [hostName][:portNumber][/serviceName]
@@ -33,5 +35,19 @@ public class Producer
 	{
 		if (jmsContext != null)
 			jmsContext.close();
+	}
+	
+	public String buildString (Color player, int[] fieldCoordinates, int[] pieceCoordinates)
+	{
+		String temporary = new String();
+		String message = new String();
+		if ( player == Piece.Color.WHITE )
+			temporary = "0";
+		else
+			temporary = "1";
+		message = temporary + Integer.toString(fieldCoordinates[0]) + Integer.toString(fieldCoordinates[1])
+				+ Integer.toString(pieceCoordinates[0]) + Integer.toString(pieceCoordinates[1]);
+		System.out.println(message);
+		return message;
 	}
 }
