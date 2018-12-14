@@ -204,6 +204,10 @@ public class BoardController
     
     private boolean flag; // flaga czy moze wykonac ruch
     
+    private enum Mode { RUN, END };
+    
+    private Mode mode;
+    
     private void initializeImageViews()
     {
     	
@@ -290,7 +294,8 @@ public class BoardController
     	fields = Initialize.initFields();
     	try
     	{
-    		producer = new Producer("localhost:4848/jms", "producer");
+    		
+    		producer = new Producer("localhost:4848/jms", "producer", player);
         	consumer = new Consumer("localhost:4848/jms", "consumer", player, this);
         	consumer.receiveQueueMessageAsync();
     	}
@@ -298,73 +303,87 @@ public class BoardController
     	{
     		
     	}
+    	mode = Mode.RUN;
     	
     }
     
    public void setPlayer( Color player )
    {
 	   this.player = player;
+	   if ( player == Piece.Color.RED )
+		   flag = true;
    }
     
     @FXML
     void FieldClicked(MouseEvent event) throws InterruptedException
     {
-    	int[] coordinates;
-    	int[] pieceCoordinates;
-    	coordinates = Search.findField(imageViewsFields, fields, event);
-    	pieceCoordinates = Search.findActivePiece(pieces);
-    	if ( pieceCoordinates[0] != -1 && fields[coordinates[0]][coordinates[1]].isActive() )
+    	if ( mode == Mode.RUN)
     	{
-    		if ( pieces[pieceCoordinates[0]][pieceCoordinates[1]].getType() == Piece.Type.MAN)
-    		{
-    			pieces[pieceCoordinates[0]][pieceCoordinates[1]].movePiece(pieceCoordinates, coordinates, imageViewsFields, imageViewsPieces, fields, pieces, gridPane);
-    		}
-    		else
-    		{
-    			pieces[pieceCoordinates[0]][pieceCoordinates[1]].moveKing(pieceCoordinates, coordinates, imageViewsFields, imageViewsPieces, fields, pieces, gridPane);
-    		}
-    		producer.sendQueueMessage( producer.buildString(player, coordinates, pieceCoordinates) );
-    		flag = true;
+    		int[] coordinates;
+        	int[] pieceCoordinates;
+        	coordinates = Search.findField(imageViewsFields, fields, event);
+        	pieceCoordinates = Search.findActivePiece(pieces);
+        	if ( pieceCoordinates[0] != -1 && fields[coordinates[0]][coordinates[1]].isActive() )
+        	{
+        		if ( pieces[pieceCoordinates[0]][pieceCoordinates[1]].getType() == Piece.Type.MAN)
+        		{
+        			pieces[pieceCoordinates[0]][pieceCoordinates[1]].movePiece(pieceCoordinates, coordinates, imageViewsFields, imageViewsPieces, fields, pieces, gridPane);
+        		}
+        		else
+        		{
+        			pieces[pieceCoordinates[0]][pieceCoordinates[1]].moveKing(pieceCoordinates, coordinates, imageViewsFields, imageViewsPieces, fields, pieces, gridPane);
+        		}
+        		producer.sendQueueMessage( producer.buildString(player, coordinates, pieceCoordinates) );
+        		flag = true;
+        	}
+        	if ( CheckPieces() )
+        	{
+        		mode = Mode.END;
+        	}
     	}
-    	
-    	
     }
 
     @FXML
     void PieceClicked(MouseEvent event) 
     {
-    	int[] coordinates; // clicked field's coordinates
-    	int[][] fieldscoordinates; // coordinates of fields, which can be used to move a piece
-    	coordinates = Search.findPiece(imageViewsPieces, pieces, event); // znalezienie kliknietego pionka
-    	// check if piece is the same color as player
-    	if ( pieces[coordinates[0]][coordinates[1]].getColor() != player )
+    	if ( mode == Mode.RUN )
     	{
-    		return;
+    		int[] coordinates; // clicked field's coordinates
+        	int[][] fieldscoordinates; // coordinates of fields, which can be used to move a piece
+        	coordinates = Search.findPiece(imageViewsPieces, pieces, event); // znalezienie kliknietego pionka
+        	// check if piece is the same color as player
+        	if ( pieces[coordinates[0]][coordinates[1]].getColor() != player )
+        	{
+        		return;
+        	}
+        	if ( flag )
+        	{
+        		return;
+        	}
+        	if ( !pieces[coordinates[0]][coordinates[1]].isActive() )
+        	{
+        		// jesli jest aktywny to ustaw na pomaranczowe mozliwe do wyboru
+        		Search.setEverythingFalse(pieces, fields, imageViewsFields);
+        		fieldscoordinates = Search.indicateFields(coordinates, fields);
+            	Field.imageChangeOrange(fieldscoordinates, imageViewsFields, fields);
+            	pieces[coordinates[0]][coordinates[1]].setActive(true);
+        	}
+        	else
+        	{
+        		Field.imageChangeBlack(imageViewsFields, fields);
+        		pieces[coordinates[0]][coordinates[1]].setActive(false);
+        	}
+        	
     	}
-    	if ( flag )
-    	{
-    		return;
-    	}
-    	if ( !pieces[coordinates[0]][coordinates[1]].isActive() )
-    	{
-    		// jesli jest aktywny to ustaw na pomaranczowe mozliwe do wyboru
-    		Search.setEverythingFalse(pieces, fields, imageViewsFields);
-    		fieldscoordinates = Search.indicateFields(coordinates, fields);
-        	Field.imageChangeOrange(fieldscoordinates, imageViewsFields, fields);
-        	pieces[coordinates[0]][coordinates[1]].setActive(true);
-    	}
-    	else
-    	{
-    		Field.imageChangeBlack(imageViewsFields, fields);
-    		pieces[coordinates[0]][coordinates[1]].setActive(false);
-    	}
+    	
     }
     
     public void MessageMove( int[] fieldsCoordinates, int[] pieceCoordinatesMessage)
     {
     	int[] coordinates = fieldsCoordinates;
     	int[] pieceCoordinates = pieceCoordinatesMessage;
-    	if ( pieceCoordinates[0] != -1 && fields[coordinates[0]][coordinates[1]].isActive() )
+    	System.out.println("Jestem w kontrolerze i ma wykonac ruch na koordynaty " + coordinates[0] + coordinates[1] + pieceCoordinates[0] + pieceCoordinates[1] );
+    	if ( pieceCoordinates[0] != -1 )
     	{
     		if ( pieces[pieceCoordinates[0]][pieceCoordinates[1]].getType() == Piece.Type.MAN)
     		{
@@ -375,7 +394,41 @@ public class BoardController
     			pieces[pieceCoordinates[0]][pieceCoordinates[1]].moveKing(pieceCoordinates, coordinates, imageViewsFields, imageViewsPieces, fields, pieces, gridPane);
     		}
     		flag = false;
+    		if ( CheckPieces() )
+        	{
+        		mode = Mode.END;
+        	}
     	}
+    }
+    
+    private boolean CheckPieces()
+    {
+    	int numberOfWhite = 0;
+    	int numberOfRed = 0;
+    	for (int i = 0; i < 8 ; i++ )
+    	{
+    		for ( int j = 0 ; j < 8 ; j++)
+    		{
+    			if ( pieces[i][j] != null )
+    			{
+    				if ( pieces[i][j].getColor() ==  Piece.Color.WHITE)
+    					numberOfWhite++;
+    				else
+    					numberOfRed++;
+    			}
+    		}
+    	}
+    	if ( numberOfWhite == 0 )
+		{
+			//alert
+			return true;
+		}
+    	if ( numberOfRed == 0 )
+		{
+			//alert
+			return true;
+		}
+    	return false;
     }
 
 }

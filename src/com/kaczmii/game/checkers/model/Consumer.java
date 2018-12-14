@@ -26,10 +26,15 @@ public class Consumer
 		// 7676 numer portu, na którym JMS Service nas³uchuje po³¹czeñ
 		// [hostName][:portNumber][/serviceName] np. "localhost:7676/jms"
 		((com.sun.messaging.ConnectionFactory)connectionFactory).setProperty(com.sun.messaging.ConnectionConfiguration.imqAddressList, url);
-		queue = new com.sun.messaging.Queue("ATJQueue"); // "ATJQueue"
+		
+		if ( player == Piece.Color.RED)
+		{
+			queue = new com.sun.messaging.Queue("QueueRed");
+		}
+		else
+			queue = new com.sun.messaging.Queue("QueueWhite");
 		jmsConsumer = jmsContext.createConsumer(queue);
 		this.player = player;
-		System.out.println(player);
 		this.controller = controller;
 	}
 	public String receiveQueueMessage() throws JMSException 
@@ -48,7 +53,6 @@ public class Consumer
 	}
 	public void receiveQueueMessageAsync() throws InterruptedException 
 	{
-		System.out.println("tu jestem");
 		AsynchConsumer aconsumer = new AsynchConsumer();
 		aconsumer.setPlayer( player );
 		aconsumer.setController(controller);

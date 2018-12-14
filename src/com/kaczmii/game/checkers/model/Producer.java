@@ -14,7 +14,7 @@ public class Producer
 	private JMSProducer jmsProducer;
 	private Queue queue;
 
-	public Producer(String url, String queueName) throws JMSException 
+	public Producer(String url, String queueName, Color player) throws JMSException 
 	{
 		ConnectionFactory connectionFactory = new com.sun.messaging.ConnectionFactory();
 		// [hostName][:portNumber][/serviceName]
@@ -23,7 +23,13 @@ public class Producer
 		jmsContext = connectionFactory.createContext();
 		((com.sun.messaging.ConnectionFactory) connectionFactory).setProperty(com.sun.messaging.ConnectionConfiguration.imqAddressList, url);
 		jmsProducer = jmsContext.createProducer();
-		queue = new com.sun.messaging.Queue("ATJQueue"); // "ATJQueue"
+		if ( player == Piece.Color.WHITE)
+		{
+			queue = new com.sun.messaging.Queue("QueueRed");
+		}
+		else
+			queue = new com.sun.messaging.Queue("QueueWhite");
+		
 	}
 
 	public void sendQueueMessage(String msg) 

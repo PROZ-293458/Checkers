@@ -13,17 +13,11 @@ import javafx.application.Platform;
 public class AsynchConsumer implements MessageListener 
 {
 	private Color player;
-	private Producer producer;
 	private BoardController boardController;
 	
 	public void setPlayer( Color player )
 	{
 		this.player = player;
-	}
-	
-	public void setProducer() throws JMSException
-	{
-		producer = new Producer("localhost:4848/jms", "producer");
 	}
 	
 	public void setController( BoardController controller )
@@ -45,28 +39,29 @@ public class AsynchConsumer implements MessageListener
 				System.out.printf("Odebrano wiadomoœæ:'%s'%n", ((TextMessage) message).getText());
 				if ( temporary.length() == 5 )
 				{
-					playerValue = Integer.valueOf(parameters[0]);
-					fieldCoordinates[0] = Integer.valueOf(parameters[1]);
-					fieldCoordinates[1] = Integer.valueOf(parameters[2]);
-					pieceCoordinates[0] = Integer.valueOf(parameters[3]);
-					pieceCoordinates[1] = Integer.valueOf(parameters[4]);
-					if ( playerValue == '0' && player == Piece.Color.WHITE )
+					playerValue = Integer.parseInt(Character.toString(parameters[0]));
+					fieldCoordinates[0] = Integer.parseInt(Character.toString(parameters[1]));
+					fieldCoordinates[1] = Integer.parseInt(Character.toString(parameters[2]));
+					pieceCoordinates[0] = Integer.parseInt(Character.toString(parameters[3]));
+					pieceCoordinates[1] = Integer.parseInt(Character.toString(parameters[4]));
+					System.out.println(Integer.parseInt(Character.toString(parameters[0])));
+					System.out.println(Integer.parseInt(Character.toString(parameters[1])));
+					System.out.println(Integer.parseInt(Character.toString(parameters[2])));
+					System.out.println(Integer.parseInt(Character.toString(parameters[3])));
+					System.out.println(Integer.parseInt(Character.toString(parameters[4])));
+					if ( playerValue == 1 && player == Piece.Color.WHITE )
 					{
 						Platform.runLater( () ->
 						{
 							boardController.MessageMove( fieldCoordinates, pieceCoordinates);
 						});
 					}
-					else if ( playerValue == '1' && player == Piece.Color.RED )
+					if ( playerValue == 0 && player == Piece.Color.RED )
 					{
 						Platform.runLater( () ->
 						{
 							boardController.MessageMove( fieldCoordinates, pieceCoordinates);
 						});
-					}
-					else
-					{
-						producer.sendQueueMessage(temporary);
 					}
 				}
 			}
