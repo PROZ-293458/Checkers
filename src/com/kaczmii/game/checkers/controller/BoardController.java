@@ -1,6 +1,8 @@
 package com.kaczmii.game.checkers.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -12,6 +14,7 @@ import com.kaczmii.game.checkers.model.Piece;
 import com.kaczmii.game.checkers.model.Piece.Color;
 import com.kaczmii.game.checkers.model.Producer;
 import com.kaczmii.game.checkers.model.Search;
+import com.kaczmii.game.checkers.view.AlertBox;
 import com.sun.messaging.jms.JMSException;
 
 public class BoardController 
@@ -200,11 +203,11 @@ public class BoardController
     
     private Consumer consumer;
     
-    public Color player;
+    public Color player; // red or white player
     
     private boolean flag; // flaga czy moze wykonac ruch
     
-    private enum Mode { RUN, END };
+    private enum Mode { RUN, END }; // to recognize if game ended
     
     private Mode mode;
     
@@ -289,18 +292,19 @@ public class BoardController
     
     public void init() throws javax.jms.JMSException,InterruptedException
     {
-    	initializeImageViews(); 
-    	pieces = Initialize.initPieces();
-    	fields = Initialize.initFields();
+    	initializeImageViews();  // to have easy access to fields and pieces in 8x8 array
+    	pieces = Initialize.initPieces(); // returns 8x8 array of pieces
+    	fields = Initialize.initFields(); // the same with fields
     	try
     	{
-    		
+    		// JMS
     		producer = new Producer("localhost:4848/jms", "producer", player);
         	consumer = new Consumer("localhost:4848/jms", "consumer", player, this);
         	consumer.receiveQueueMessageAsync();
     	}
     	catch ( JMSException e)
     	{
+    		e.printStackTrace();
     		
     	}
     	mode = Mode.RUN;
@@ -420,12 +424,12 @@ public class BoardController
     	}
     	if ( numberOfWhite == 0 )
 		{
-			//alert
+			AlertBox.show(AlertType.INFORMATION, "WYGRANA", "", "GRE WYGRYWA CZEROWONY", ButtonType.OK);
 			return true;
 		}
     	if ( numberOfRed == 0 )
 		{
-			//alert
+    		AlertBox.show(AlertType.INFORMATION, "WYGRANA", "", "GRE WYGRYWA BIA£Y", ButtonType.OK);
 			return true;
 		}
     	return false;

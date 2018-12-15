@@ -136,7 +136,7 @@ public class Piece
 		if ( Math.abs(pieceCoordinates[0] - coordinates[0]) > 1 )
 		{
 			int[][] hitCoordinates = new int[5][2];
-			if ( pieceCoordinates[0] > coordinates[0] && pieceCoordinates[1] > coordinates[0] )
+			if ( pieceCoordinates[0] > coordinates[0] && pieceCoordinates[1] > coordinates[1] )
 			{
 				for ( int i = coordinates[0]+1, j = coordinates[1]+1; i < pieceCoordinates[0] ; i++, j++ )
 				{
@@ -145,7 +145,7 @@ public class Piece
 					counter++;
 				}
 			}
-			if ( pieceCoordinates[0] < coordinates[0] && pieceCoordinates[1] > coordinates[0] )
+			if ( pieceCoordinates[0] < coordinates[0] && pieceCoordinates[1] > coordinates[1] )
 			{
 				for ( int i = coordinates[0]-1, j = coordinates[1]+1; i > pieceCoordinates[0] ; i--, j++ )
 				{
@@ -154,7 +154,7 @@ public class Piece
 					counter++;
 				}
 			}
-			if ( pieceCoordinates[0] < coordinates[0] && pieceCoordinates[1] < coordinates[0] )
+			if ( pieceCoordinates[0] < coordinates[0] && pieceCoordinates[1] < coordinates[1] )
 			{
 				for ( int i = coordinates[0]-1, j = coordinates[1]-1; i > pieceCoordinates[0] ; i--, j-- )
 				{
@@ -163,7 +163,7 @@ public class Piece
 					counter++;
 				}
 			}
-			if ( pieceCoordinates[0] > coordinates[0] && pieceCoordinates[1] < coordinates[0] )
+			if ( pieceCoordinates[0] > coordinates[0] && pieceCoordinates[1] < coordinates[1] )
 			{
 				for ( int i = coordinates[0]+1, j = coordinates[1]-1; i < pieceCoordinates[0] ; i++, j-- )
 				{
